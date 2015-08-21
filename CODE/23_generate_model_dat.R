@@ -31,6 +31,11 @@ foodInspect$Violations <- NULL
 ##       Critical, serious, and minor violations
 violation_dat <- readRDS("DATA/violation_dat.Rds")
 
+
+violation_sent <- readRDS("DATA/sent_violation_dat.Rds")
+
+
+
 ## Import the inspectors
 inspectors <- readRDS("DATA/inspectors.Rds")
 
@@ -74,6 +79,15 @@ dat_model <- foodInspect[i = TRUE ,
 dat_model <- merge(x = dat_model, 
                    y = violation_dat, 
                    by = "Inspection_ID")
+
+
+
+dat_model <- merge(x = dat_model, 
+                   y = violation_sent, 
+                   by = "Inspection_ID")
+
+
+
 
 ## Join in the clean facility type
 dat_model <- merge(
@@ -221,7 +235,7 @@ dat_model <- merge(dat_model,
 ##==============================================================================
 ## Set the key for dat_model
 setkey(dat_model, Inspection_ID)
-saveRDS(dat_model, file.path("DATA/dat_model.Rds"))
+saveRDS(dat_model, file.path("DATA/dat_model1.Rds"))
 
 
 

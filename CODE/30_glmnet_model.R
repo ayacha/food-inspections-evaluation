@@ -17,7 +17,7 @@ geneorama::sourceDir("CODE/functions/")
 ##==============================================================================
 ## LOAD CACHED RDS FILES
 ##==============================================================================
-dat <- readRDS("DATA/dat_model.Rds")
+dat <- readRDS("DATA/dat_model1.Rds")
 
 ## Only keep "Retail Food Establishment"
 dat <- dat[LICENSE_DESCRIPTION == "Retail Food Establishment"]
@@ -39,6 +39,7 @@ setkey(dat, Inspection_ID)
 ##==============================================================================
 # sort(colnames(dat))
 xmat <- dat[ , list(Inspector = Inspector_Assigned,
+                    Sent = sentiment_col,
                     pastSerious = pmin(pastSerious, 1),
                     pastCritical = pmin(pastCritical, 1),
                     timeSinceLast,
